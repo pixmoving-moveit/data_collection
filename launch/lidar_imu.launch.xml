@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="pcd_dir_path" default="/home/ahua20/Downloads/calibration_data/lidar_top" />
+  <arg name="pose_file_path" default="/home/ahua20/Downloads/calibration_data/pose.txt" />
+  <arg name="pointcloud_topic" default="/sensing/lidar/top/rslidar_sdk/rs/points" />
+  <arg name="pose_topic" default="/sensing/gnss/pose" />
+
+  <node pkg="data_collection" name="data_collection_lidar_imu_node" exec="data_collection_lidar_imu_node" output="screen">
+    <param name="pcd_dir_path" value="$(var pcd_dir_path)"/>
+    <param name="pose_file_path" value="$(var pose_file_path)"/>
+    <param name="pointcloud_topic" value="$(var pointcloud_topic)"/>
+    <param name="pose_topic" value="$(var pose_topic)"/>
+  </node>
+
+</launch>
