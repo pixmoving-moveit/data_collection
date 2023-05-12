@@ -15,9 +15,12 @@ namespace data_collection
       param_.png_file_path = declare_parameter("png_file_path", "output/png/");
 
       std::cout << (int)param_.collect_number << "\n";
+      maximum_queue_size_ = static_cast<int>(declare_parameter("max_queue_size", 5));
+
       // ros2 subscribers
       pointclude_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
-          param_.pointcloud_topic, 1,
+          param_.pointcloud_topic, 
+           rclcpp::SensorDataQoS().keep_last(maximum_queue_size_),
           std::bind(&PcdPndExtractor::callbackPointCloud, this, std::placeholders::_1));
 
       image_sub_ = create_subscription<sensor_msgs::msg::Image>(

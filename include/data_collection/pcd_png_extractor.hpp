@@ -62,6 +62,8 @@ namespace data_collection
       Param param_;
       uint8_t pcd_number = 0;
       uint8_t png_number = 0;
+      int maximum_queue_size_ = 3;
+
 
       // subscribers
       rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::ConstSharedPtr pointclude_sub_;
