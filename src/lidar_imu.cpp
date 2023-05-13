@@ -20,7 +20,8 @@ LidarImu::LidarImu() : Node("lidar_imu")
 
   // subscribers
   pointcloud_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
-    param_.pointcloud_topic, 1,
+    param_.pointcloud_topic, 
+    rclcpp::SensorDataQoS().keep_last(10),
     std::bind(&LidarImu::callbackPointCloud, this, std::placeholders::_1));
   gnss_pose_sub_ = create_subscription<geometry_msgs::msg::PoseStamped>(
     param_.pose_topic, 1, std::bind(&LidarImu::callbackGnssPose, this, std::placeholders::_1));

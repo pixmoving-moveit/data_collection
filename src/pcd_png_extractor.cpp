@@ -20,7 +20,7 @@ namespace data_collection
       // ros2 subscribers
       pointclude_sub_ = create_subscription<sensor_msgs::msg::PointCloud2>(
           param_.pointcloud_topic, 
-           rclcpp::SensorDataQoS().keep_last(maximum_queue_size_),
+          rclcpp::SensorDataQoS().keep_last(maximum_queue_size_),
           std::bind(&PcdPndExtractor::callbackPointCloud, this, std::placeholders::_1));
 
       image_sub_ = create_subscription<sensor_msgs::msg::Image>(
